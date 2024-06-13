@@ -18,13 +18,13 @@ class ContactController extends Controller
         $move = $req->file('image')->move(public_path('images/'), $newname);
         if ($move) {
             $insert = DB::table('contact_table')->insert([
+                 'user_id' => Auth::user()->id,
                 'full_name' => $req->fullname,
                 'phone_number' => $req->phonenumber,
                 'email' => $req->email,
                 'gender' => $req->gender,
                 'address' => $req->address,
                 'password' => $req->password,
-                'user_id' => Auth::user()->id,
                 'user_profile' => $newname
             ]);
             if ($insert) {

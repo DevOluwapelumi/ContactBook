@@ -11,9 +11,13 @@
                     <tr>
                         <th>ID</th>
                         <th>Profile Image</th>
-                        <th>Title</th>
-                        <th>Content</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Phone Nos</th>
+                        <th>Email</th>
+                        <th>Address</th>
                         <th>Created At</th>
+                        <th>Updated At</th>
                         <th class="col-3">Actions</th>
                     </tr>
                 </thead>
@@ -24,9 +28,13 @@
                             <td> <div class="text-center">
                                 <img src="/images/{{$contact->user_profile}}" alt="" style="max-width: 30px; height: auto; border-radius: 50%;">
                             </div></td>
-                            <td>{{ $contact->title }}</td>
-                            <td>{{ $contact->content }}</td>
-                            <td>{{ $contact->createdat }}</td>
+                            <td>{{ $contact->full_name }}</td>
+                            <td>{{ $contact->gender }}</td>
+                            <td>{{ $contact->phone_number }}</td>
+                            <td>{{ $contact->email }}</td>
+                            <td>{{ $contact->address }}</td>
+                            <td>{{ $contact->created_at }}</td>
+                            <td>{{ $contact->updated_at }}</td>
                             <td>
                                 <a href="/displaynote/delete/{{$contact->id}}"><button class="btn btn-danger">Delete</button></a>
                                 <a href="/displaynote/edit/{{$contact->id}}"><button class="btn btn-success ms-3">Edit</button></a>
