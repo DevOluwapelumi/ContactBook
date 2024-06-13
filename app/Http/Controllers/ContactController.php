@@ -13,35 +13,39 @@ class ContactController extends Controller
         return view('Contact.register');
     }
     public function addContact(Request $req){
-
-
-     $newname=time().$req->image->getClientOriginalName();
-     $move=$req->image->move(public_path('images/'), $newname);
-     if($move){
-            $insert=DB::table('contact_table')->insert([
-           'title'=>$req->title,
-            'content'=>$req->content,
-            'user_id'=>Auth::user()->id,
-           'user_profile'=>$newname
-          ]);
-           if($insert) {
+    if ($req->hasFile('image') && $req->file('image')->isValid()) {
+        $newname = time() . $req->file('image')->getClientOriginalName();
+        $move = $req->file('image')->move(public_path('images/'), $newname);
+        if ($move) {
+            $insert = DB::table('contact_table')->insert([
+                'full_name' => $req->fullname,
+                'phone_number' => $req->phonenumber,
+                'email' => $req->email,
+                'gender' => $req->gender,
+                'address' => $req->address,
+                'password' => $req->password,
+                'user_id' => Auth::user()->id,
+                'user_profile' => $newname
+            ]);
+            if ($insert) {
                 return redirect('/displayContact');
-           }
-           else {
-            return ('Not sent');
-           };
-     } else {
-        return ' not moved';
-     }
-    //  return $req->image->getSize(); --- To get the image Size
+            } else {
+                return 'Not sent';
+            }
+        } else {
+            return 'not moved';
+        }
+    } else {
+        return 'No file uploaded';
     }
+}
+
 
     public function displayContact(){
-      //  $select=DB::table('noteapp_table')->get();
-        $select=DB::table('contact_table')->where('user_id', Auth::user()->id)->get();
-       // return $select;
+      $select=DB::table('contact_table')->where('user_id', Auth::user()->id)->get();
+    //  $select=DB::table('contact_table')->where('user_id')->get();
         return view('Contact.displayContact', [
-            'allnote'=>$select
+            'allcontact'=>$select
             ]);
 }
    

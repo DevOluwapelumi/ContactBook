@@ -18,19 +18,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($allnote as $note)
+                    @foreach ($allcontact as $contact)
                         <tr>
-                            <td>{{ $note->note_id }}</td>
+                            <td>{{ $contact->id }}</td>
                             <td> <div class="text-center">
-                                <img src="/images/{{$note->user_profile}}" alt="" style="max-width: 30px; height: auto; border-radius: 50%;">
+                                <img src="/images/{{$contact->user_profile}}" alt="" style="max-width: 30px; height: auto; border-radius: 50%;">
                             </div></td>
-                            <td>{{ $note->title }}</td>
-                            <td>{{ $note->content }}</td>
-                            <td>{{ $note->createdat }}</td>
+                            <td>{{ $contact->title }}</td>
+                            <td>{{ $contact->content }}</td>
+                            <td>{{ $contact->createdat }}</td>
                             <td>
-                                <a href="/displaynote/delete/{{$note->note_id}}"><button class="btn btn-danger">Delete</button></a>
-                                <a href="/displaynote/edit/{{$note->note_id}}"><button class="btn btn-success ms-3">Edit</button></a>
-                              <a href="/viewnote/{{$note->note_id}}"><button class="btn btn-primary ms-3">View Profile</button></a>
+                                <a href="/displaynote/delete/{{$contact->id}}"><button class="btn btn-danger">Delete</button></a>
+                                <a href="/displaynote/edit/{{$contact->id}}"><button class="btn btn-success ms-3">Edit</button></a>
+                              <a href="/viewnote/{{$contact->id}}"><button class="btn btn-primary ms-3">View Profile</button></a>
                             </td>
                             
                         </tr>

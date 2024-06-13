@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::get('/Contact', [ContactController::class, 'showContact']);
 Route::post('/Contactapp_process', [ContactController::class, 'addContact']);
 
 Route::get('/displayContact', [ContactController::class, 'displayContact']);
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
