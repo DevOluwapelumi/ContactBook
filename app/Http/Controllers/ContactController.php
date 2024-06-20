@@ -41,12 +41,23 @@ class ContactController extends Controller
 }
 
 
-    public function displayContact(){
-      $select=DB::table('contact_table')->where('user_id', Auth::user()->id)->get();
-    //  $select=DB::table('contact_table')->where('user_id')->get();
-        return view('Contact.displayContact', [
-            'allcontact'=>$select
-            ]);
+public function displayContact()
+{
+    $user = Auth::user();
+    if ($user) {
+        $select = DB::table('contact_table')
+                    ->where('user_id', $user->id)
+                    ->get();
+    } else {
+        $select = DB::table('contact_table')
+                    ->where('user_id')
+                    ->get();
+    }
+
+    return view('Contact.displayContact', [
+        'allcontact' => $select
+    ]);
 }
+
    
 }
